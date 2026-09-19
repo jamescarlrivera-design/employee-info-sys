@@ -136,68 +136,33 @@
 <div class="container">
 
     <div class="header">
-        <h1>Employee List</h1>
-
-        <a href="{{route('employee.create')}}" class="add-button">
-            + Add Employee
-        </a>
-    </div>
-
-    <div class="table-container">
-
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Department</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                @forelse ($employees as $employee)
-
-                    <tr>
-                        <td>{{ $employee->id }}</td>
-
-                        <td>{{ $employee->first_name }}</td>
-
-                        <td>{{ $employee->last_name }}</td>
-
-                        <td>{{ $employee->department }}</td>
-
-                        <td>
-                            <a href="{{ route('employee.show', [$employee->id]) }}" class="action-button view">
-                                View
-                            </a>
-
-                            <a href="#" class="action-button edit">
-                                Edit
-                            </a>
-
-                            <button class="delete">
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-
-                @empty
-
-                    <tr>
-                        <td colspan="5" class="empty">
-                            No employees found.
-                        </td>
-                    </tr>
-
-                @endforelse
-
-            </tbody>
-        </table>
+        <h1>Add Employee</h1>
 
     </div>
+
+    <form action="{{ route('employee.store') }}" method="POST">
+        @csrf
+        <div> 
+           <label for="first_name">First Name:</label> 
+           <input type="text" name="first_name" id="first_name" required> 
+        </div><br> 
+        <div> 
+            <label for="last_name">Last Name:</label> 
+            <input type="text" name="last_name" id="last_name" required> 
+        </div> <br> 
+        <div> 
+            <label for="department">Department:</label> 
+            <input type="text" name="department" id="department" required> 
+        </div> <br> 
+        <button type="submit">Create Employee</button>
+    </form>
+    <br>
+   <a href="{{ route('employee.index') }}">Back To Employees</a> 
+
+        
+       
+
+    
 
 </div>
 
