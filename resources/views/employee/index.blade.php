@@ -174,7 +174,7 @@
                                 View
                             </a>
 
-                            <a href="#" class="action-button edit">
+                            <a href="{{ route('employee.edit',[$employee->id]) }}" class="action-button edit">
                                 Edit
                             </a>
 
