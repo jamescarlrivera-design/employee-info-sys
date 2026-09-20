@@ -152,6 +152,7 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Department</th>
+                    <th>Position</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -168,6 +169,11 @@
                         <td>{{ $employee->last_name }}</td>
 
                         <td>{{ $employee->department }}</td>
+
+                        <td>{{ $employee->position }}</td>
+
+
+                      
 
                         <td>
                             <a href="{{ route('employee.show', [$employee->id]) }}" class="action-button view">

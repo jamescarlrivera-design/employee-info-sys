@@ -31,6 +31,7 @@ class EmployeeController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'department' => $request->department,
+            'position' => $request->position,
         ]);
         return redirect()->route('employee.index');
     }
@@ -48,6 +49,7 @@ class EmployeeController extends Controller
          'first_name' => 'required',
          'last_name' => 'required',
          'department' => 'required',
+         'position' => 'required',
 
        ]);
 
@@ -55,6 +57,8 @@ class EmployeeController extends Controller
         'first_name' => $request->first_name,
         'last_name' => $request->last_name,
         'department'=> $request->department,
+        'position'=> $request->position,
+        
        ]);
 
 

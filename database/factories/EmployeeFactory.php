@@ -27,6 +27,16 @@ class EmployeeFactory extends Factory
            'Die Sales',
            'MF',
         ]),
+         'position' => fake()->randomElement([
+          'Operator',
+          'Supervisor',
+          'Manager',
+          'Technician',
+          'Engineer',
+         ]),
+           
+           
+        
       ];
     }
 }
