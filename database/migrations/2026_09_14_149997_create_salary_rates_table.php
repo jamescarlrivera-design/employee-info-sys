@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('salary_rates', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->string('rate_name');
+            $table->decimal('amount', 10, 2);
             $table->timestamps();
         });
-
-       
     }
 
     /**
@@ -27,7 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-    
+        Schema::dropIfExists('salary_rates');
     }
 };

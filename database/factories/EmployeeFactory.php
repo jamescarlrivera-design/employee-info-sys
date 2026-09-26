@@ -1,7 +1,9 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\SalaryRates;
+use App\Models\Position;
+use App\Models\EmploymentStatus;
 use App\Models\Employee;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,26 +19,19 @@ class EmployeeFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-        'first_name' => fake()->firstName(),
-        'last_name'=> fake()->lastName(),
-        'department' => fake()->randomElement([
-           'Final Test',
-           'Probe',
-           'MEF',
-           'Die Sales',
-           'MF',
-        ]),
-         'position' => fake()->randomElement([
-          'Operator',
-          'Supervisor',
-          'Manager',
-          'Technician',
-          'Engineer',
-         ]),
-           
-           
-        
-      ];
+          return [
+            'employee_number' => 'EMP-' . fake()->unique()->numberBetween(1000, 9999),
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
+            'middle_name' => fake()->optional()->firstName(),
+            'address' => fake()->address(),
+            'email' => fake()->unique()->safeEmail(),
+            'department_id' => fake()->numberBetween(1, 5),
+            'position_id' =>fake()->numberBetween(1, 5),
+            'employment_status_id' =>fake()->numberBetween(1, 4),
+            'salary_rate_id' =>fake()->numberBetween(1, 4),
+            'date_hired' => fake()->date(),
+          
+        ];
     }
 }

@@ -1,175 +1,299 @@
-<!DOCTYPE html>
+<x-layout>
 
-<html lang="en">
+    <div class="employee-section">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee List</title>
+        <!-- PAGE HEADER -->
 
+        <div class="section-header">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+            <div>
+                <h2>Add New Employee</h2>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            color: #333;
-        }
+                <p style="color: #6b7280; margin-top: 5px;">
+                    Enter the employee information below.
+                </p>
+            </div>
 
-        .navbar {
-            background: #1f2937;
-            color: white;
-            padding: 18px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar h2 {
-            margin: 0;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 40px auto;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .header h1 {
-            margin: 0;
-        }
-
-        .add-button {
-            background: #2563eb;
-            color: white;
-            padding: 10px 18px;
-            border-radius: 6px;
-            text-decoration: none;
-        }
-
-        .add-button:hover {
-            background: #1d4ed8;
-        }
-
-        .table-container {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: #e5e7eb;
-            text-align: left;
-            padding: 15px;
-        }
-
-        td {
-            padding: 15px;
-            border-top: 1px solid #eee;
-        }
-
-        tr:hover {
-            background: #f9fafb;
-        }
-
-        .action-button {
-            text-decoration: none;
-            padding: 7px 12px;
-            border-radius: 5px;
-            margin-right: 5px;
-        }
-
-        .view {
-            background: #10b981;
-            color: white;
-        }
-
-        .edit {
-            background: #f59e0b;
-            color: white;
-        }
-
-        .delete {
-            background: #ef4444;
-            color: white;
-            border: none;
-            padding: 7px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .empty {
-            text-align: center;
-            padding: 30px;
-            color: #777;
-        }
-    </style>
-
-
-</head>
-
-<body>
-
-
-    <div class="navbar">
-        <h2>Employee Management</h2>
-        <span>Admin Dashboard</span>
-    </div>
-
-    <div class="container">
-
-        <div class="header">
-            <h1>Add Employee</h1>
+            <a href="{{ route('employee.index') }}" class="action-button view">
+                ← Back to Employees
+            </a>
 
         </div>
 
-        <form method="POST" action="{{ route('employee.store') }}">
-             @csrf 
-             <label for="first_name">First Name</label>
-            <input 
-                id="first_name" 
-                name="first_name" 
-                value="{{ old('first_name') }}" 
-                 required> 
-            @error('first_name')
-            <p class="error">{{ $message }}</p> 
-            @enderror 
-            <label for="last_name">Last Name</label> 
-            <input 
-                id="last_name"
-                name="last_name" value="{{ old('last_name') }}" required> @error('last_name')
-                <p class="error">{{ $message }}</p> @enderror <label for="department">Department</label> <input
-                id="department" name="department" value="{{ old('department') }}" required> @error('department')
-                <p class="error">{{ $message }}</p> @enderror <button type="submit">Create Employee</button>
+
+        <!-- VALIDATION ERRORS -->
+
+        @if ($errors->any())
+
+            <div class="error">
+
+                <strong>Please fix the following errors:</strong>
+
+                <ul style="margin-top: 8px; margin-left: 20px;">
+
+                    @foreach ($errors->all() as $error)
+
+                        <li>
+                            {{ $error }}
+                        </li>
+
+                    @endforeach
+
+                </ul>
+
+            </div>
+
+        @endif
+
+
+        <!-- EMPLOYEE FORM -->
+
+        <form action="{{ route('employee.store') }}" method="POST">
+
+            @csrf
+
+
+            {{-- <!-- EMPLOYEE NUMBER -->
+
+            <div class="form-group">
+
+                <label for="employee_number">
+                    Employee Number
+                </label>
+
+                <input type="text" id="employee_number" name="employee_number" value="{{ old('employee_number') }}"
+                    placeholder="Example: EMP-0001" required>
+
+            </div> --}}
+
+
+            <!-- FIRST NAME -->
+
+            <div class="form-group">
+
+                <label for="first_name">
+                    First Name
+                </label>
+
+                <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}"
+                    placeholder="Enter first name" required>
+
+            </div>
+
+
+            <!-- MIDDLE NAME -->
+
+            <div class="form-group">
+
+                <label for="middle_name">
+                    Middle Name
+                </label>
+
+                <input type="text" id="middle_name" name="middle_name" value="{{ old('middle_name') }}"
+                    placeholder="Enter middle name">
+
+            </div>
+
+
+            <!-- LAST NAME -->
+
+            <div class="form-group">
+
+                <label for="last_name">
+                    Last Name
+                </label>
+
+                <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}"
+                    placeholder="Enter last name" required>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input type="email" id="email" name="email" value="{{ old('email') }}"
+                    placeholder="employee@example.com">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="date_hired">
+                    Date Hired
+                </label>
+
+                <input type="date" id="date_hired" name="date_hired" value="{{ old('date_hired') }}" required>
+
+
+                {{-- <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input type="text" id="phone" name="phone" value="{{ old('phone') }}"
+                        placeholder="Enter phone number">
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="form-group">
+
+                    <label for="address">
+                        Address
+                    </label>
+
+                    <textarea id="address" name="address" rows="3"
+                        placeholder="Enter employee address">{{ old('address') }}</textarea>
+
+                </div>--}}
+
+
+                <!-- DEPARTMENT -->
+
+                <div class="form-group">
+
+                    <label for="department_id">
+                        Department
+                    </label>
+
+                    <select id="department_id" name="department_id" required>
+
+                        <option value="">
+                            Select Department
+                        </option>
+
+                        @foreach ($departments as $department)
+                            <option value="{{ $department->id }}" {{ old('department_id') == $department->id ? 'selected' : '' }}>
+                                {{ $department->department_name }}
+                            </option>
+                        @endforeach
+
+
+
+                    </select>
+
+                </div>
+                <!-- POSITION -->
+
+                <div class="form-group">
+
+                    <label for="position_id">
+                        Position
+                    </label>
+
+                    <select id="position_id" name="position_id" required>
+
+                        <option value="">
+                            Select Position
+                        </option>
+
+                        @foreach ($positions as $position)
+
+                            <option value="{{ $position->id }}" {{ old('position_id') == $position->id ? 'selected' : '' }}>
+                                {{ $position->position_name }}
+                            </option>
+
+                        @endforeach
+
+                    </select>
+
+                </div>
+
+                <!-- SALARY RATE -->
+
+                <div class="form-group">
+
+                    <label for="salary_rate_id">
+                        Salary Rate
+                    </label>
+
+                    <select id="salary_rate_id" name="salary_rate_id" required>
+
+                        <option value="">
+                            Select Salary Rate
+                        </option>
+
+                        @foreach ($salary_Rates as $salaryRate)
+
+                            <option value="{{ $salaryRate->id }}" {{ old('salary_rate_id') == $salaryRate->id ? 'selected' : '' }}>
+                                {{ $salaryRate->rate_name }}
+                            </option>
+
+                        @endforeach
+
+                    </select>
+
+                </div>
+
+                       <!-- EMPLOYMENT STATUS -->
+
+                <div class="form-group">
+
+                   <label for="employment_status_id">Employment Status </label>
+
+                   <select
+                    id="employment_status_id"
+                    name="employment_status_id"
+                    required>
+
+                       <option value="">
+                          Select Employment Status
+                         </option>
+
+                     @foreach ($employmentStatuses as $status)
+
+                         <option
+                            value="{{ $status->id }}"
+                               {{ old('employment_status_id') == $status->id ? 'selected' : '' }}
+                                 >
+                                {{ $status->employment_status }}
+                         </option>
+
+                    @endforeach
+
+                    </select>
+
+                </div>                                          
+
+
+
+                <!-- BUTTONS -->
+
+                <div style="
+                display: flex;
+                gap: 10px;
+                margin-top: 25px;
+            ">
+
+                    <button type="submit" class="login-button" style="width: auto; padding: 12px 25px;">
+                        Save Employee
+                    </button>
+
+
+                    <a href="{{ route('employee.index') }}" class="action-button view" style="
+                        display: flex;
+                        align-items: center;
+                        padding: 12px 20px;
+                    ">
+                        Cancel
+                    </a>
+
+                </div>
+
         </form>
-        <br>
-        <a href="{{ route('employee.index') }}">Back To Employees</a>
-
-
-
-
-
 
     </div>
 
-
-</body>
-
-</html>
+</x-layout>

@@ -2,19 +2,17 @@
 
 namespace Database\Seeders;
 
-
+use App\Models\SalaryRates;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Employee;
 
-
-class EmployeeSeeder extends Seeder
+class SalaryRatesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Employee::factory()->count(40)->create();
+        SalaryRates::factory()->count(4)->create();
     }
 }
