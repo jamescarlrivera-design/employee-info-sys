@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->string('email')->unique();
-            $table->string('address')->nullable();
+            $table->string('address')->nullable()
+            ->unique();
             $table->foreignId('department_id')
                   ->nullable()
                   ->constrained('departments')

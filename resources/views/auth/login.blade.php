@@ -29,7 +29,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #f3f4f6;
+            background: #e3f7e8;
 
             display: flex;
             justify-content: center;
@@ -54,7 +54,7 @@
 
         .login-container p {
             text-align: center;
-            color: #6b7280;
+            color: #2c3036;
             margin-bottom: 25px;
         }
 

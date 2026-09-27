@@ -151,12 +151,13 @@
                                                     <!-- VIEW -->
 
                                                     <button type="button" class="action-button view" onclick="openEmployeeModal(this)"
-                                                        data-employee-number="{{ $employee->employee_number }}" data-name="{{ trim(
-                            $employee->first_name . ' ' .
-                            ($employee->middle_name ?? '') . ' ' .
-                            $employee->last_name
-                        ) }}" data-department="{{ $employee->department->department_name ?? 'N/A' }}"
+                                                        data-employee-number="{{ $employee->employee_number }}"
+                                                        data-name="{{ trim(
+                            $employee->first_name . ' ' . ($employee->middle_name ?? '') . ' ' . $employee->last_name
+                        )}}"
+                                                        data-department="{{ $employee->department->department_name ?? 'N/A' }}"
                                                         data-position="{{ $employee->position->position_name ?? 'N/A' }}"
+                                                        data-email="{{ $employee->email ?? 'N/A' }}"
                                                         data-status="{{ $employee->employmentStatus->employment_status ?? 'N/A' }}"
                                                         data-salary="{{ $employee->salaryrates->rate_name ?? 'N/A' }}"
                                                         data-date-hired="{{ $employee->date_hired ?? 'N/A' }}">
@@ -183,8 +184,8 @@
                                                         @method('DELETE')
 
                                                         <button type="submit" class="action-button delete" onclick="return confirm(
-                                                                    'Are you sure you want to delete this employee?'
-                                                                )">
+                                                                                                                                'Are you sure you want to delete this employee?'
+                                                                                                                            )">
 
                                                             Delete
 
@@ -225,86 +226,80 @@
              PAGINATION
         ====================================== -->
 
-      @if ($employees->hasPages())
+        @if ($employees->hasPages())
 
-    <div class="custom-pagination">
+            <div class="custom-pagination">
 
-        {{-- Previous Page --}}
+                {{-- Previous Page --}}
 
-        @if ($employees->onFirstPage())
+                @if ($employees->onFirstPage())
 
-            <span class="page-button disabled">
-                ‹
-            </span>
+                    <span class="page-button disabled">
+                        ‹
+                    </span>
 
-        @else
+                @else
 
-            <a
-                href="{{ $employees->previousPageUrl() }}"
-                class="page-button">
+                    <a href="{{ $employees->previousPageUrl() }}" class="page-button">
 
-                ‹
+                        ‹
 
-            </a>
+                    </a>
 
-        @endif
+                @endif
 
 
-        {{-- Page Numbers --}}
+                {{-- Page Numbers --}}
 
-        @foreach ($employees->getUrlRange(1, $employees->lastPage()) as $page => $url)
+                @foreach ($employees->getUrlRange(1, $employees->lastPage()) as $page => $url)
 
-            @if ($page == $employees->currentPage())
+                    @if ($page == $employees->currentPage())
 
-                <span class="page-button active">
-                    {{ $page }}
-                </span>
+                        <span class="page-button active">
+                            {{ $page }}
+                        </span>
 
-            @else
+                    @else
 
-                <a
-                    href="{{ $url }}"
-                    class="page-button">
+                        <a href="{{ $url }}" class="page-button">
 
-                    {{ $page }}
+                            {{ $page }}
 
-                </a>
+                        </a>
 
-            @endif
+                    @endif
 
-        @endforeach
+                @endforeach
 
 
-        {{-- Next Page --}}
+                {{-- Next Page --}}
 
-        @if ($employees->hasMorePages())
+                @if ($employees->hasMorePages())
 
-            <a
-                href="{{ $employees->nextPageUrl() }}"
-                class="page-button">
+                    <a href="{{ $employees->nextPageUrl() }}" class="page-button">
 
-                ›
+                        ›
 
-            </a>
+                    </a>
 
-        @else
+                @else
 
-            <span class="page-button disabled">
-                ›
-            </span>
+                    <span class="page-button disabled">
+                        ›
+                    </span>
+
+                @endif
+
+            </div>
 
         @endif
 
     </div>
 
-@endif
-
-    </div>
 
 
 
 
-    
 
 
     <!-- =====================================
@@ -368,19 +363,23 @@
                 </div>
 
 
+                <div class="detail-row">
+                    <strong>Email:</strong>
+                    <span id="modalEmail"></span>
+                </div>
+
+
                 <!-- Department -->
 
                 <div class="detail-row">
 
-                    <strong>
-                        Department:
-                    </strong>
-
+                    <strong>Department</strong>
                     <span id="modalDepartment">
                         N/A
                     </span>
 
                 </div>
+
 
 
                 <!-- Position -->
@@ -1079,6 +1078,9 @@
             const department =
                 button.dataset.department || 'N/A';
 
+            const email =
+                button.dataset.email || 'N/A';
+
             const position =
                 button.dataset.position || 'N/A';
 
@@ -1107,6 +1109,10 @@
             document.getElementById(
                 'modalDepartment'
             ).textContent = department;
+
+            document.getElementById(
+                'modalEmail'
+            ).textContent = email;
 
 
             document.getElementById(

@@ -7,6 +7,7 @@ use App\Models\SalaryRates;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\Position;
+use Illuminate\Validation\Rule;
 
 class EmployeeController extends Controller
 {
@@ -115,7 +116,7 @@ class EmployeeController extends Controller
             'first_name' => 'required',
             'middle_name' => 'nullable',
             'last_name' => 'required',
-            'email' => 'nullable|email',
+            'email' => 'nullable|email|max:255|unique:employees,email',
             'phone' => 'nullable',
             'address' => 'nullable',
             'department_id' => 'required|exists:departments,id',
@@ -148,7 +149,8 @@ class EmployeeController extends Controller
             'date_hired' => $request->date_hired,
 
         ]);
-        return redirect()->route('employee.index');
+        return redirect()->route('employee.index')
+         ->with('success', 'Employee added successfully!');
     }
     public function edit($id)
     {
@@ -169,7 +171,7 @@ class EmployeeController extends Controller
             'first_name' => 'required',
             'middle_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:employees,email',
             'department_id' => 'required',
             'position_id' => 'required',
             'salary_rate_id' => 'required',
