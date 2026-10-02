@@ -27,7 +27,7 @@
             <div class="action-grid">
 
                 <a
-                    href="{{ route('employee.create') }}"
+                    href="{{ route('admin.create') }}"
                     class="quick-action add">
 
                     <span class="action-icon">
@@ -42,7 +42,7 @@
 
 
                 <a
-                    href="{{ route('employee.index') }}"
+                    href="{{ route('admin.index') }}"
                     class="quick-action view">
 
                     <span class="action-icon">
@@ -245,7 +245,7 @@
                 <h2>Recent Employees</h2>
 
                 <a
-                    href="{{ route('employee.index') }}"
+                    href="{{ route('admin.index') }}"
                     class="view-all">
                     View All
                 </a>

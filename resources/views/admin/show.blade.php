@@ -10,11 +10,11 @@
             </div>
 
             <div>
-                <a href="{{ route('employee.index') }}" class="back-button">
+                <a href="{{ route('admin.index') }}" class="back-button">
                     ← Back to Employees
                 </a>
 
-                <a href="{{ route('employee.edit', $employee->id) }}" class="edit-button">
+                <a href="{{ route('admin.edit', $employee->id) }}" class="edit-button">
                     Edit Employee
                 </a>
             </div>
@@ -141,11 +141,11 @@
         <!-- ACTIONS -->
         <div class="action-buttons">
 
-            <a href="{{ route('employee.index') }}" class="back-button">
+            <a href="{{ route('admin.index') }}" class="back-button">
                 Back
             </a>
 
-            <a href="{{ route('employee.edit', $employee->id) }}" class="edit-button">
+            <a href="{{ route('admin.edit', $employee->id) }}" class="edit-button">
                 Edit Employee
             </a>
 

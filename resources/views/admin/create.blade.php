@@ -14,7 +14,7 @@
                 </p>
             </div>
 
-            <a href="{{ route('employee.index') }}" class="action-button view">
+            <a href="{{ route('admin.index') }}" class="action-button view">
                 ← Back to Employees
             </a>
 
@@ -48,7 +48,7 @@
 
         <!-- EMPLOYEE FORM -->
 
-        <form action="{{ route('employee.store') }}" method="POST">
+        <form action="{{ route('admin.store') }}" method="POST">
 
             @csrf
 
@@ -282,7 +282,7 @@
                     </button>
 
 
-                    <a href="{{ route('employee.index') }}" class="action-button view" style="
+                    <a href="{{ route('admin.index') }}" class="action-button view" style="
                         display: flex;
                         align-items: center;
                         padding: 12px 20px;

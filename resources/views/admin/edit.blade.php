@@ -9,7 +9,7 @@
             <p>Update employee information</p>
         </div>
 
-        <a href="{{ route('employee.show', $employee->id) }}" class="back-button">
+        <a href="{{ route('admin.show', $employee->id) }}" class="back-button">
             ← Back
         </a>
     </div>
@@ -33,7 +33,7 @@
     <div class="form-card">
 
         <form
-            action="{{ route('employee.update', $employee->id) }}"
+            action="{{ route('admin.update', $employee->id) }}"
             method="POST"
         >
 
@@ -266,7 +266,7 @@
             <div class="form-actions">
 
                 <a
-                    href="{{ route('employee.show', $employee->id) }}"
+                    href="{{ route('admin.show', $employee->id) }}"
                     class="cancel-button"
                 >
                     Cancel

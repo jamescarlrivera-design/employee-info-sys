@@ -50,7 +50,15 @@ class LoginController extends Controller
             // Regenerate session
             $request->session()->regenerate();
 
-            return redirect()->route('employee.home');
+
+            if(Auth::user()->role == 'admin') {
+
+               return redirect()->route('admin.home');
+            }
+            if(Auth::user()->role == 'employee'){
+                return redirect()->route('employee.index');
+            }
+
         }
 
         // Record failed attempt for 60 seconds

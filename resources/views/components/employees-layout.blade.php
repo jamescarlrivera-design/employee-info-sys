@@ -1103,22 +1103,15 @@ table tbody tr:hover {
         </div>
 
 
-        <a href="{{ route('admin.home') }}" class="nav-link active">
+        <a href="" class="nav-link active">
 
             🏠 Dashboard
 
         </a>
 
 
-        <a href="{{ route('admin.index') }}" class="nav-link">
 
-            👥 Employees
-
-        </a>
-
-
-
-         <a href="{{ route('admin.department.index') }}" class="nav-link">
+         <a href="" class="nav-link">
 
             Departments
 

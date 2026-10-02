@@ -22,7 +22,7 @@ class EmployeeController extends Controller
         ->orderBy('id', 'asc')
         ->paginate(10);
 
-    return view('employee.index', [
+    return view('admin.index', [
         'employees' => $employees
     ]);
 }
@@ -80,7 +80,7 @@ class EmployeeController extends Controller
             )
             ->count();
 
-        return view('employee.home', compact(
+        return view('admin.home', compact(
             'totalEmployees',
             'totalDepartments',
             'totalPositions',
@@ -98,7 +98,7 @@ class EmployeeController extends Controller
     {
 
         $employee = Employee::findOrFail($id);
-        return view('employee.show', ['employee' => $employee]);
+        return view('admin.show', ['employee' => $employee]);
     }
     public function create()
     {
@@ -107,7 +107,7 @@ class EmployeeController extends Controller
         $departments = Department::all();
         $salary_Rates = SalaryRates::all();
 
-        return view('employee.create', compact('departments', 'positions', 'salary_Rates', 'employmentStatuses', ));
+        return view('admin.create', compact('departments', 'positions', 'salary_Rates', 'employmentStatuses', ));
     }
 
     public function store(Request $request)
@@ -149,7 +149,7 @@ class EmployeeController extends Controller
             'date_hired' => $request->date_hired,
 
         ]);
-        return redirect()->route('employee.index')
+        return redirect()->route('admin.index')
          ->with('success', 'Employee added successfully!');
     }
     public function edit($id)
@@ -160,7 +160,7 @@ class EmployeeController extends Controller
         $departments = Department::all();
         $salary_Rates = SalaryRates::all();
         $employee = Employee::findOrFail($id);
-        return view('employee.edit', ['employee' => $employee], compact('departments', 'positions', 'salary_Rates', 'employmentStatuses', ));
+        return view('admin.edit', ['employee' => $employee], compact('departments', 'positions', 'salary_Rates', 'employmentStatuses', ));
     }
     public function update(Request $request, $id)
     {
@@ -196,7 +196,7 @@ class EmployeeController extends Controller
 
 
         return redirect()
-            ->route('employee.index')
+            ->route('admin.index')
             ->with('success', 'Employee updated successfully!');
     }
 
@@ -208,7 +208,7 @@ class EmployeeController extends Controller
         $employee->delete();
 
         return redirect()
-            ->route('employee.index')
+            ->route('admin.index')
             ->with('success', 'Employee deleted successfully.');
     }
 
