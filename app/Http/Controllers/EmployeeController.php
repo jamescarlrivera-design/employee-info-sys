@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
-    public function index()
+    public function adminindex(Request $request)
     {
-        $employees = Employee::with([
+
+        $departments = Department::orderBy('department_name')->get();
+     
+        $query = Employee::with([
             'user',
             'department',
             'position',
@@ -27,13 +30,49 @@ class EmployeeController extends Controller
             'salaryrates'
             
           
-        ])
-            ->orderBy('id', 'asc')
-            ->paginate(10);
-
-        return view('admin.index', [
-            'employees' => $employees
         ]);
+
+         if ($request->filled('department')){
+            $query->where('department_id', $request->department);
+         }
+            
+
+         $employees = $query 
+         -> orderBy('last_name')
+         ->paginate(10)
+         ->withQueryString();
+
+        return view('admin.index', compact('employees', 'departments'));
+    }
+
+
+
+    public function employeeindex(Request $request)
+    {
+
+        $departments = Department::orderBy('department_name')->get();
+     
+        $query = Employee::with([
+            'user',
+            'department',
+            'position',
+            'employmentStatus',
+            'salaryrates'
+            
+          
+        ]);
+
+         if ($request->filled('department')){
+            $query->where('department_id', $request->department);
+         }
+            
+
+         $employees = $query 
+         -> orderBy('last_name')
+         ->paginate(10)
+         ->withQueryString();
+
+        return view('employee.index', compact('employees', 'departments'));
     }
 
 

@@ -25,6 +25,7 @@ class EmployeeFactory extends Factory
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'middle_name' => fake()->optional()->firstName(),
+            'profile_picture' => 'profile-pictures/employee_default.jpg',
             'address' => fake()->address(),
             'department_id' => fake()->numberBetween(1, 5),
             'user_id' => User::factory(),

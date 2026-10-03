@@ -56,7 +56,7 @@ class LoginController extends Controller
                return redirect()->route('admin.home');
             }
             if(Auth::user()->role == 'employee'){
-                return redirect()->route('employee.index');
+                return redirect()->route('employee.home');
             }
 
         }

@@ -23,11 +23,14 @@ class EmployeeDashboardController extends Controller
 
         $employee = Auth::user()->employee;
 
-        return view('employee.index', compact('employee'));
+        return view('employee.home', compact('employee'));
 
 
     }
 
+
+
+    
 
     public function view()
     {

@@ -274,6 +274,100 @@
         }
 
 
+
+        /* =====================================
+   CUSTOM PAGINATION
+===================================== */
+
+        .custom-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 6px;
+
+            margin-top: 25px;
+            margin-bottom: 30px;
+        }
+
+
+        /* Page buttons */
+
+        .page-button {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-width: 38px;
+            height: 38px;
+
+            padding: 0 12px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 7px;
+
+            background: white;
+
+            color: #374151;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            transition: all 0.2s ease;
+        }
+
+
+        /* Hover */
+
+        .page-button:hover {
+            background: #2563eb;
+
+            border-color: #2563eb;
+
+            color: white;
+        }
+
+
+        /* Current page */
+
+        .page-button.active {
+            background: #2563eb;
+
+            border-color: #2563eb;
+
+            color: white;
+
+            font-weight: 700;
+        }
+
+
+        /* Disabled */
+
+        .page-button.disabled {
+            background: #f3f4f6;
+
+            color: #9ca3af;
+
+            border-color: #e5e7eb;
+
+            cursor: not-allowed;
+        }
+
+
+        /* Previous / Next */
+
+        .page-button:first-child,
+        .page-button:last-child {
+            font-size: 20px;
+        }
+
+
+
         /* =========================
            EMPLOYEE DASHBOARD
         ========================== */
@@ -583,6 +677,143 @@
         .change-password-button:hover {
             opacity: 0.9;
         }
+
+
+
+        .department-section {
+            width: 100%;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .section-header p {
+            margin-top: 5px;
+            color: #777;
+        }
+
+
+        /* Department Grid */
+
+        .department-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+
+        /* Department Card */
+
+        .department-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .department-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+        }
+
+
+        /* Icon */
+
+        .department-icon {
+            width: 50px;
+            height: 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #f1f1f1;
+            border-radius: 10px;
+
+            font-size: 24px;
+        }
+
+
+        /* Department Information */
+
+        .department-info h3 {
+            margin: 0 0 6px;
+            font-size: 19px;
+        }
+
+        .department-info p {
+            margin: 0;
+            color: #777;
+            font-size: 13px;
+        }
+
+
+        /* Buttons */
+
+        .department-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .view-button,
+        .edit-button {
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .view-button {
+            background: #222;
+            color: white;
+        }
+
+        .edit-button {
+            background: #eeeeee;
+            color: #333;
+        }
+
+
+        /* Responsive */
+
+        @media (max-width: 1000px) {
+            .department-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .department-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+
+
+
+        
     </style>
 
 </head>
@@ -626,9 +857,17 @@
 
         <!-- DASHBOARD -->
 
-        <a href="{{ route('employee.index') }}" class="nav-link">
+        <a href="{{ route('employee.home') }}" class="nav-link">
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff4242" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1" /><path d="M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" /><path d="M15 12h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1" /><path d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" /></svg> Dashboard
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#ff4242" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1" />
+                <path d="M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" />
+                <path d="M15 12h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1" />
+                <path d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" />
+            </svg> Dashboard
 
 
         </a>
@@ -638,8 +877,42 @@
 
         <a href="{{ route('employee.view') }}" class="nav-link">
 
-             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff4242" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg> My Profile
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#ff4242" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-users">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+            </svg> My Profile
 
+
+        </a>
+
+        <a href="{{  route('employee.index') }}" class="nav-link">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#ff4242" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-users">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+            </svg> Employees
+
+        </a>
+
+
+        <a href="{{ route('employee.department') }}" class="nav-link">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#ff4242" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-brand-office">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M4 18h9v-12l-5 2v5l-4 2v-8l9 -4l7 2v13l-7 3l-9 -3" />
+            </svg> Departments
 
         </a>
 
@@ -648,7 +921,13 @@
 
         <a href="{{ route('employee.change-password') }}" class="nav-link">
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff4242" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-key-round preview-icon"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg> Change Password
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#ff4242" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-key-round preview-icon">
+                <path
+                    d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" />
+                <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" />
+            </svg> Change Password
 
         </a>
 

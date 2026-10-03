@@ -1,4 +1,6 @@
-<x-layout>
+<x-employees-layout>
+
+
 
     <div class="department-section">
 
@@ -8,9 +10,6 @@
                 <p>List of departments in the company.</p>
             </div>
 
-            <a href="" class="add-button">
-                + Add Department
-            </a>
         </div>
 
 
@@ -38,13 +37,11 @@
 
                     <div class="department-actions">
 
-                        <a href="{{ route('admin.index', ['department' => $department->id]) }}" class="view-button">
+                        <a href="{{ route('employee.index', ['department' => $department->id]) }}" class="view-button">
                             View
                         </a>
 
-                        <a href="" class="edit-button">
-                            Edit
-                        </a>
+                     
 
                     </div>
 
@@ -56,4 +53,6 @@
 
     </div>
 
-</x-layout>
+
+
+</x-employees-layout>

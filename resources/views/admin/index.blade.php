@@ -24,6 +24,10 @@
 
         @endif
 
+        
+
+
+
 
         <!-- =====================================
              HEADER
@@ -46,6 +50,8 @@
             </div>
 
 
+            
+
             <a href="{{ route('admin.create') }}" class="add-button">
 
                 + Add Employee
@@ -53,6 +59,32 @@
             </a>
 
         </div>
+         
+         {{-- Department Filter Buttons --}}
+            <div class="department-filters">
+
+                {{-- All Employees --}}
+                <a href="{{ route('admin.index') }}" class="filter-button
+               {{ !request('department') ? 'active' : '' }}">
+                    All
+                </a>
+
+
+                {{-- Department Buttons --}}
+                @foreach ($departments as $department)
+
+                    <a href="{{ route('admin.index', ['department' => $department->id]) }}" class="filter-button
+                       {{ request('department') == $department->id ? 'active' : '' }}">
+
+                        {{ $department->department_name }}
+
+                    </a>
+
+                @endforeach
+
+            </div>
+        
+        
 
 
         <!-- =====================================
@@ -151,11 +183,9 @@
                                                     <!-- VIEW -->
 
                                                     <button type="button" class="action-button view" onclick="openEmployeeModal(this)"
-                                                        data-employee-number="{{ $employee->employee_number }}"
-                                                        data-name="{{ trim(
+                                                        data-employee-number="{{ $employee->employee_number }}" data-name="{{ trim(
                             $employee->first_name . ' ' . ($employee->middle_name ?? '') . ' ' . $employee->last_name
-                        )}}"
-                                                        data-department="{{ $employee->department->department_name ?? 'N/A' }}"
+                        )}}" data-department="{{ $employee->department->department_name ?? 'N/A' }}"
                                                         data-position="{{ $employee->position->position_name ?? 'N/A' }}"
                                                         data-email="{{ $employee->user->email ?? 'N/A' }}"
                                                         data-status="{{ $employee->employmentStatus->employment_status ?? 'N/A' }}"
@@ -183,9 +213,10 @@
 
                                                         @method('DELETE')
 
-                                                        <button type="submit" class="action-button delete" onclick="return confirm(
-                                                                                                                                'Are you sure you want to delete this employee?'
-                                                                                                                            )">
+                                                        <button type="submit" class="action-button delete"
+                                                            onclick="return confirm(
+                                                                                                                                                    'Are you sure you want to delete this employee?'
+                                                                                                                                                )">
 
                                                             Delete
 

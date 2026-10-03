@@ -21,12 +21,12 @@ Route::post('/logout', [LoginController::class, 'logout'])
 
 Route::middleware(['auth', 'role:employee'])->group(function () {
 
-    Route::get('/employees/dashboards', [EmployeeDashboardController::class, 'index'])->name('employee.index');
-    Route::get(
-        '/employee/change-password',
-        [EmployeeDashboardController::class, 'changePassword']
-    )->name('employee.change-password');
-
+    Route::get('/employees/dashboards', [EmployeeDashboardController::class, 'index'])->name('employee.home');
+    Route::get('/employees/index', 
+        [EmployeeController::class, 'employeeindex']
+    )->name('employee.index');
+    Route::get('/employee/change-password',[EmployeeDashboardController::class, 'changePassword'])->name('employee.change-password');
+    Route::get('employee/departments/list', [DepartmentController::class, 'employeeindex'])->name('employee.department');
     Route::post(
         '/employee/change-password',
         [EmployeeDashboardController::class, 'updatePassword']
@@ -41,8 +41,8 @@ Route::middleware(['auth', 'role:employee'])->group(function () {
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('departments/list', [DepartmentController::class, 'index'])->name('admin.department.index');
-    Route::get('/employees/list', [EmployeeController::class, 'index'])->name('admin.index');
+    Route::get('departments/list', [DepartmentController::class, 'adminindex'])->name('admin.department.index');
+    Route::get('/employees/list', [EmployeeController::class, 'adminindex'])->name('admin.index');
     Route::get('/employees/home', [EmployeeController::class, 'home'])->name('admin.home');
     Route::get('/employees/create', [EmployeeController::class, 'create'])->name('admin.create');
     Route::get('/employees/{id}', [EmployeeController::class, 'show'])->name('admin.show');
