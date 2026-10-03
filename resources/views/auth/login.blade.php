@@ -4,58 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Employee Information System</title>
+
+    <title>Employee Login</title>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         * {
             box-sizing: border-box;
-        }
-
-        .login-wrapper {
-            width: 100%;
-            max-width: 400px;
-            position: relative;
-        }
-
-        .login-container {
-            width: 100%;
-            max-width: 400px;
-            background: white;
-            padding: 35px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            background: #e3f7e8;
+            min-height: 100vh;
 
             display: flex;
             justify-content: center;
             align-items: center;
 
-            min-height: 100vh;
+            background: #f4f5f7;
         }
 
         .login-container {
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
+            padding: 20px;
+        }
+
+        .login-card {
             background: white;
             padding: 35px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 14px;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
         }
 
-        .login-container h1 {
+        .login-header {
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
         }
 
-        .login-container p {
-            text-align: center;
-            color: #2c3036;
-            margin-bottom: 25px;
+        .login-icon {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #222;
+            color: white;
+
+            border-radius: 50%;
+        }
+
+        .login-icon svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        .login-header h1 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .login-header p {
+            color: #777;
+            font-size: 14px;
         }
 
         .form-group {
@@ -64,142 +84,198 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 7px;
-            font-weight: bold;
+            margin-bottom: 8px;
+
+            font-size: 14px;
+            font-weight: 600;
         }
 
-        .form-group input {
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper svg {
+            position: absolute;
+
+            left: 13px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 18px;
+            height: 18px;
+
+            color: #777;
+        }
+
+        .input-wrapper input {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
+
+            padding: 12px 12px 12px 42px;
+
+            border: 1px solid #ddd;
+            border-radius: 7px;
+
             font-size: 14px;
+        }
+
+        .input-wrapper input:focus {
+            outline: none;
+            border-color: #333;
         }
 
         .login-button {
             width: 100%;
-            padding: 12px;
+
+            padding: 13px;
+
             border: none;
-            border-radius: 6px;
-            background: #2563eb;
+            border-radius: 7px;
+
+            background: #222;
             color: white;
-            font-size: 16px;
+
+            font-size: 15px;
+            font-weight: 600;
+
             cursor: pointer;
         }
 
         .login-button:hover {
-            background: #1d4ed8;
+            opacity: 0.9;
         }
 
-        .error {
-            background: #fee2e2;
-            color: #b91c1c;
-            padding: 10px;
-            border-radius: 6px;
+        .error-message {
             margin-bottom: 20px;
+
+            padding: 12px 15px;
+
+            background: #ffebee;
+            color: #c62828;
+
+            border: 1px solid #ef9a9a;
+            border-radius: 7px;
+
+            font-size: 14px;
         }
 
+        .login-footer {
+            text-align: center;
+            margin-top: 25px;
 
-        .alert-error {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            width: 100%;
-
-            background-color: #fee2e2;
-            color: #991b1b;
-
-            border: 1px solid #ef4444;
-            border-radius: 8px;
-
-            padding: 12px 16px;
-
-            margin-bottom: 15px;
-
-            font-weight: 500;
-
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        }
-
-
-        .alert-close {
-            background: transparent;
-            border: none;
-
-            color: #991b1b;
-            font-size: 22px;
-            font-weight: bold;
-
-            cursor: pointer;
-            padding: 0 5px;
-        }
-
-        .alert-close:hover {
-            color: #7f1d1d;
+            color: #888;
+            font-size: 13px;
         }
     </style>
 </head>
 
-
 <body>
 
-    <div class="login-wrapper">
+    <div class="login-container">
 
-        @if(session('error'))
-            <div class="alert-error" id="login-alert">
+        <div class="login-card">
 
-                <span>
-                    ⚠ {{ session('error') }}
-                </span>
+            <!-- Header -->
+            <div class="login-header">
 
-                <button type="button" class="alert-close" onclick="document.getElementById('login-alert').remove()">
-                    &times;
-                </button>
+                <div class="login-icon">
+                    <i data-lucide="user"></i>
+                </div>
+
+                <h1>Employee Portal</h1>
+
+                <p>Sign in to your account</p>
 
             </div>
-        @endif
 
 
-        <div class="login-container">
-
-            <h1>Employee Information System</h1>
-
-            <p>Login to your account</p>
-
+            <!-- Errors -->
             @if ($errors->any())
-                <div class="error">
+
+                <div class="error-message">
+
                     {{ $errors->first() }}
+
                 </div>
+
             @endif
 
-            <form action="{{ route('login.process') }}" method="POST">
+
+            <!-- Login Form -->
+            <form action="{{ route('login') }}" method="POST">
+
                 @csrf
 
+                <!-- Email -->
                 <div class="form-group">
-                    <label for="email">Email</label>
 
-                    <input type="email" id="email" name="email" value="{{ old('email') }}"
-                        placeholder="Enter your email" required>
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i data-lucide="mail"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            value="{{ old('email') }}"
+                            required
+                        >
+
+                    </div>
+
                 </div>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
 
-                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <!-- Password -->
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i data-lucide="lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                    </div>
+
                 </div>
 
+
+                <!-- Button -->
                 <button type="submit" class="login-button">
-                    Login
+                    Sign In
                 </button>
 
             </form>
+
+
+            <div class="login-footer">
+                Employee Information System
+            </div>
 
         </div>
 
     </div>
 
-</body>
 
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
 
 </html>

@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+use App\Models\User;
 use App\Models\SalaryRates;
 use App\Models\Position;
 use App\Models\EmploymentStatus;
@@ -25,8 +26,8 @@ class EmployeeFactory extends Factory
             'last_name' => fake()->lastName(),
             'middle_name' => fake()->optional()->firstName(),
             'address' => fake()->address(),
-            'email' => fake()->unique()->safeEmail(),
             'department_id' => fake()->numberBetween(1, 5),
+            'user_id' => User::factory(),
             'position_id' =>fake()->numberBetween(1, 5),
             'employment_status_id' =>fake()->numberBetween(1, 4),
             'salary_rate_id' =>fake()->numberBetween(1, 4),

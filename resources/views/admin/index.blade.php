@@ -157,7 +157,7 @@
                         )}}"
                                                         data-department="{{ $employee->department->department_name ?? 'N/A' }}"
                                                         data-position="{{ $employee->position->position_name ?? 'N/A' }}"
-                                                        data-email="{{ $employee->email ?? 'N/A' }}"
+                                                        data-email="{{ $employee->user->email ?? 'N/A' }}"
                                                         data-status="{{ $employee->employmentStatus->employment_status ?? 'N/A' }}"
                                                         data-salary="{{ $employee->salaryrates->rate_name ?? 'N/A' }}"
                                                         data-date-hired="{{ $employee->date_hired ?? 'N/A' }}">

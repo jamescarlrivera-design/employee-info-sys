@@ -8,14 +8,12 @@ class Employee extends Model
 {
     use HasFactory;
     protected $fillable = ['employee_number',
+    'user_id',
     'first_name',
     'middle_name',
     'last_name',
-    'email',
-    'phone',
     'address',
     'department_id',
-    'email',
     'position_id',
     'employment_status_id',
     'salary_rate_id',
@@ -30,7 +28,7 @@ class Employee extends Model
 
     public function user()
     {
-    return $this->belongsTo(User::class);
+    return $this->belongsTo(User::class, 'user_id');
     }
 
     public function employmentStatus(){

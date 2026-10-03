@@ -125,6 +125,21 @@
 
             <div class="form-group">
 
+                <label for="password">
+                    Password
+                </label>
+
+                <input type="password" id="password" name="password" value=""
+                    placeholder="password">
+
+            </div>
+
+
+
+
+
+            <div class="form-group">
+
                 <label for="date_hired">
                     Date Hired
                 </label>
@@ -143,8 +158,7 @@
                     <input type="text" id="phone" name="phone" value="{{ old('phone') }}"
                         placeholder="Enter phone number">
 
-                </div>
-
+                </div> --}}
 
                 <!-- ADDRESS -->
 
@@ -157,7 +171,7 @@
                     <textarea id="address" name="address" rows="3"
                         placeholder="Enter employee address">{{ old('address') }}</textarea>
 
-                </div>--}}
+                </div>
 
 
                 <!-- DEPARTMENT -->

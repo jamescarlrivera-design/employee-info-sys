@@ -246,6 +246,19 @@
             </div>
 
 
+
+            <div class="form-group">
+
+                    <label for="address">
+                        Address
+                    </label>
+
+                    <textarea id="address" name="address" rows="3"
+                        placeholder="Enter employee address">{{ old('address') }}</textarea>
+
+            </div>
+
+
             <!-- DATE HIRED -->
             <div class="form-group">
                 <label for="date_hired">
@@ -266,7 +279,7 @@
             <div class="form-actions">
 
                 <a
-                    href="{{ route('admin.show', $employee->id) }}"
+                    href="{{ route('admin.index', $employee->id) }}"
                     class="cancel-button"
                 >
                     Cancel

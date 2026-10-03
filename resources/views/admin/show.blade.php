@@ -68,7 +68,7 @@
 
                 <div class="detail">
                     <span class="label">Email:</span>
-                    <span>{{ $employee->email ?? 'N/A' }}</span>
+                    <span>{{ $employee->user->email ?? 'N/A' }}</span>
                 </div>
 
                 <div class="detail">
