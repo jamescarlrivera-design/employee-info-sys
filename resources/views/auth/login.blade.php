@@ -190,15 +190,14 @@
 
 
             <!-- Errors -->
-            @if ($errors->any())
+             @if (session('error'))
 
-                <div class="error-message">
+    <div class="error-message">
+        {{ session('error') }}
+    </div>
 
-                    {{ $errors->first() }}
-
-                </div>
-
-            @endif
+    @endif
+           
 
 
             <!-- Login Form -->
@@ -217,14 +216,8 @@
 
                         <i data-lucide="mail"></i>
 
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Enter your email"
-                            value="{{ old('email') }}"
-                            required
-                        >
+                        <input type="email" id="email" name="email" placeholder="Enter your email"
+                            value="{{ old('email') }}" required>
 
                     </div>
 
@@ -242,13 +235,7 @@
 
                         <i data-lucide="lock"></i>
 
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Enter your password"
-                            required
-                        >
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
                     </div>
 
